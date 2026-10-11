@@ -1,8 +1,8 @@
 
 "use strict";
 
-const SHIPPING_FEE = 5.99;
-const FREE_SHIPPING_THRESHOLD = 75;
+const SHIPPING_FEE = 10;
+const FREE_SHIPPING_THRESHOLD = 100;
 
 const cartItemsContainer = document.getElementById("cartItems");
 const cartLayout = document.getElementById("cartLayout");
