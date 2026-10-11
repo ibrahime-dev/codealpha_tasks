@@ -1,0 +1,150 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Review your ShopEase shopping bag and continue to checkout.">
+  <title>Your Shopping Bag | ShopEase</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/api.js" defer></script>
+  <script src="js/cart.js" defer></script>
+</head>
+<body>
+  <div class="announcement">Free shipping on orders over $75 <span>·</span> Discover your next favorite thing</div>
+
+  <header class="site-header">
+    <div class="container nav-container">
+      <a class="logo" href="index.html"><span class="logo-mark">S</span> ShopEase<span class="logo-dot">.</span></a>
+
+      <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation" aria-expanded="false">☰</button>
+
+      <nav class="main-nav" id="mainNav">
+        <a class="nav-link" href="index.html">Home</a>
+        <a class="nav-link" href="products.html">Shop</a>
+        <a class="nav-link" href="products.html#categories">Categories</a>
+        <a class="nav-link" href="index.html#about">About</a>
+        <a class="nav-link" href="orders.html">My Orders</a>
+      </nav>
+
+      <div class="nav-actions">
+        <a class="icon-button" href="products.html" aria-label="Browse products">⌕</a>
+        <a class="icon-button" href="login.html" aria-label="My account">♙</a>
+        <a class="cart-link" href="cart.html">Bag <span class="cart-count" id="cartCount">0</span></a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="page-banner cart-banner">
+      <div class="container">
+        <span class="eyebrow">YOUR SHOPPING BAG</span>
+        <h1>Good choices, <span>right here.</span></h1>
+        <p>Review your finds before moving on to checkout.</p>
+        <div class="breadcrumbs">
+          <a href="index.html">Home</a><span>/</span><a href="products.html">Shop</a><span>/</span>Shopping bag
+        </div>
+      </div>
+    </section>
+
+    <section class="container cart-section">
+      <div class="cart-heading">
+        <div>
+          <h2>Your bag <span id="cartItemCount">(0 items)</span></h2>
+          <p>Your selected products are waiting for you.</p>
+        </div>
+        <a class="text-link" href="products.html">← Continue shopping</a>
+      </div>
+
+      <div class="cart-layout" id="cartLayout">
+        <section class="cart-items-panel">
+          <div class="cart-table-heading">
+            <span>PRODUCT</span>
+            <span>PRICE</span>
+            <span>QUANTITY</span>
+            <span>TOTAL</span>
+          </div>
+          <div id="cartItems" aria-live="polite"></div>
+        </section>
+
+        <aside class="order-summary">
+          <h2>Order summary</h2>
+
+          <div class="summary-line">
+            <span>Subtotal</span>
+            <strong id="cartSubtotal">$0.00</strong>
+          </div>
+
+          <div class="summary-line">
+            <span>Shipping</span>
+            <strong id="shippingCost">$0.00</strong>
+          </div>
+
+          <p class="shipping-note" id="shippingNote">Shipping is calculated from your subtotal.</p>
+
+          <div class="summary-line summary-total">
+            <span>Estimated total</span>
+            <strong id="cartTotal">$0.00</strong>
+          </div>
+
+          <a class="button button-primary checkout-button" id="checkoutButton" href="checkout.html">
+            Continue to checkout <span>→</span>
+          </a>
+
+          <div class="secure-note"><span>✓</span> Your shopping details stay in this browser for now.</div>
+
+          <div class="summary-benefits">
+            <div><span>◇</span><p><strong>Thoughtful finds</strong><br>Everyday essentials</p></div>
+            <div><span>✓</span><p><strong>Easy shopping</strong><br>A simple checkout experience</p></div>
+          </div>
+        </aside>
+      </div>
+
+      <div class="cart-empty" id="cartEmpty" hidden>
+        <div class="empty-bag-icon">♡</div>
+        <span class="eyebrow">NOTHING IN YOUR BAG — YET</span>
+        <h2>Your next favorite is out there.</h2>
+        <p>Explore our collection and find something that makes your day.</p>
+        <a class="button button-primary" href="products.html">Explore products <span>→</span></a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-main">
+      <div class="footer-brand">
+        <a class="logo footer-logo" href="index.html"><span class="logo-mark">S</span> ShopEase<span class="logo-dot">.</span></a>
+        <p>Good finds for everyday life. Discover your next favorite thing.</p>
+      </div>
+      <div class="footer-column">
+        <h3>Explore</h3>
+        <a href="products.html">All products</a>
+        <a href="index.html#categories">Categories</a>
+        <a href="index.html#about">About us</a>
+      </div>
+      <div class="footer-column">
+        <h3>Your account</h3>
+        <a href="login.html">Sign in</a>
+        <a href="register.html">Create account</a>
+        <a href="cart.html">Shopping bag</a>
+        <a href="orders.html">My orders</a>
+      </div>
+      <div class="footer-column">
+        <h3>Shopping</h3>
+        <a href="checkout.html">Checkout</a>
+        <a href="index.html">Homepage</a>
+      </div>
+    </div>
+    <div class="container footer-bottom">
+      <span>© <span id="currentYear"></span> ShopEase. Built with care.</span>
+      <span>Discover · Choose · Enjoy</span>
+    </div>
+  </footer>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+</body>
+</html>

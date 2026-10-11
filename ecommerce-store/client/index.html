@@ -1,0 +1,317 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#ffffff">
+  <meta name="description" content="Discover carefully selected everyday essentials, modern technology, and lifestyle favorites at ShopEase.">
+  <title>ShopEase — Find Your Everyday Favorites</title>
+
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <script src="js/api.js" defer></script>
+  <script src="js/home.js" defer></script>
+</head>
+<body>
+
+  <div class="announcement">
+    <p>Welcome to ShopEase <span>·</span> Thoughtful finds, delivered to you.</p>
+  </div>
+
+  <header class="site-header">
+    <div class="nav-container">
+      <a class="brand" href="index.html" aria-label="ShopEase home">
+        <span class="brand-mark"><span></span><span></span><span></span></span>
+        <span>ShopEase<span class="brand-period">.</span></span>
+      </a>
+
+      <button class="menu-toggle" id="menu-toggle" type="button"
+        aria-label="Open navigation" aria-expanded="false" aria-controls="main-nav">
+        <span></span><span></span><span></span>
+      </button>
+
+      <nav class="main-nav" id="main-nav">
+        <a class="nav-link active" href="index.html">Home</a>
+        <a class="nav-link" href="products.html">Shop</a>
+        <a class="nav-link" href="#categories">Categories</a>
+        <a class="nav-link" href="#why-shopease">About</a>
+      </nav>
+
+      <div class="nav-actions">
+        <button class="icon-button search-toggle" id="search-toggle"
+          type="button" aria-label="Focus product search">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <circle cx="10.8" cy="10.8" r="6.8"></circle>
+            <path d="m16 16 4.2 4.2"></path>
+          </svg>
+        </button>
+
+        <a class="icon-button cart-button" href="cart.html" aria-label="Shopping cart">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M3 4h2l2.1 10.1a2 2 0 0 0 2 1.6h7.8a2 2 0 0 0 1.9-1.4L21 8H6"></path>
+            <circle cx="10" cy="20" r="1.2"></circle>
+            <circle cx="18" cy="20" r="1.2"></circle>
+          </svg>
+          <span class="cart-count" id="cart-count">0</span>
+        </a>
+
+        <a class="button button-small nav-login" href="login.html">
+          Sign in <span aria-hidden="true">↗</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero-content">
+        <div class="eyebrow">
+          <span class="eyebrow-dot"></span> YOUR EVERYDAY, UPGRADED
+        </div>
+
+        <h1>Good finds.<br>Better <span>living.</span></h1>
+
+        <p class="hero-description">
+          Discover thoughtful essentials and little luxuries that make every day feel a bit more special.
+        </p>
+
+        <div class="hero-actions">
+          <a class="button button-primary" href="#featured">
+            Explore collection <span aria-hidden="true">→</span>
+          </a>
+          <a class="text-link" href="#categories">
+            Browse categories <span aria-hidden="true">↗</span>
+          </a>
+        </div>
+
+        <div class="hero-proof">
+          <div class="avatar-stack" aria-hidden="true">
+            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=80&h=80&fit=crop&crop=faces" alt="">
+            <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=80&h=80&fit=crop&crop=faces" alt="">
+            <img src="https://images.unsplash.com/photo-1531123897727-8f129e1688ce?w=80&h=80&fit=crop&crop=faces" alt="">
+          </div>
+          <div>
+            <strong>A little something for everyone</strong>
+            <span>Find your next favorite.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-visual">
+        <div class="hero-image-wrap">
+          <img class="hero-image"
+            src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=1000&h=1150&fit=crop"
+            alt="Curated neutral-toned clothing and accessories">
+        </div>
+
+        <div class="hero-image-label">
+          THE EVERYDAY EDIT <span>01 / 04</span>
+        </div>
+        <div class="hero-decoration" aria-hidden="true">✳</div>
+      </div>
+
+      <div class="hero-bottom-line">
+        <span>CURATED FOR YOU</span>
+        <span>QUALITY · STYLE · SIMPLICITY</span>
+      </div>
+    </section>
+
+    <!-- SHOPPING BENEFITS -->
+    <section class="benefits" aria-label="Shopping benefits">
+      <div class="benefit">
+        <span class="benefit-icon">↗</span>
+        <div><strong>Easy to explore</strong><span>Find what you love</span></div>
+      </div>
+      <div class="benefit">
+        <span class="benefit-icon">◇</span>
+        <div><strong>Thoughtful picks</strong><span>Everyday favorites</span></div>
+      </div>
+      <div class="benefit">
+        <span class="benefit-icon">♡</span>
+        <div><strong>Made for you</strong><span>A little joy in every order</span></div>
+      </div>
+      <div class="benefit">
+        <span class="benefit-icon">✓</span>
+        <div><strong>Simple shopping</strong><span>A smooth experience</span></div>
+      </div>
+    </section>
+
+    <!-- CATEGORIES -->
+    <section class="section categories-section" id="categories">
+      <div class="section-heading">
+        <div>
+          <span class="section-kicker">A WORLD OF GOOD FINDS</span>
+          <h2>Explore by <span>category.</span></h2>
+        </div>
+        <a href="products.html" class="text-link">
+          View everything <span aria-hidden="true">→</span>
+        </a>
+      </div>
+
+      <div class="category-grid">
+        <a class="category-card category-tech" href="products.html?category=Electronics">
+          <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=700&h=700&fit=crop" alt="Wireless headphones">
+          <div class="category-overlay">
+            <span>01 / TECH</span>
+            <h3>Technology</h3>
+            <span class="category-arrow">↗</span>
+          </div>
+        </a>
+
+        <a class="category-card category-style" href="products.html?category=Fashion">
+          <img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?w=700&h=700&fit=crop" alt="Contemporary fashion">
+          <div class="category-overlay">
+            <span>02 / STYLE</span>
+            <h3>Fashion</h3>
+            <span class="category-arrow">↗</span>
+          </div>
+        </a>
+
+        <a class="category-card category-home" href="products.html?category=Home">
+          <img src="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=700&h=700&fit=crop" alt="Warm, modern home interior">
+          <div class="category-overlay">
+            <span>03 / LIVING</span>
+            <h3>Home &amp; living</h3>
+            <span class="category-arrow">↗</span>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <!-- FEATURED PRODUCTS -->
+    <section class="section featured-section" id="featured">
+      <div class="section-heading featured-heading">
+        <div>
+          <span class="section-kicker">A FEW THINGS WE LOVE</span>
+          <h2>Favorites worth <span>finding.</span></h2>
+          <p class="section-description">
+            A curated little collection to get you started.
+          </p>
+        </div>
+
+        <a href="products.html" class="button button-outline desktop-view-all">
+          Shop all products <span aria-hidden="true">→</span>
+        </a>
+      </div>
+
+      <form class="product-search" id="product-search-form" role="search">
+        <label class="search-box">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <circle cx="10.8" cy="10.8" r="6.8"></circle>
+            <path d="m16 16 4.2 4.2"></path>
+          </svg>
+          <input id="product-search" type="search"
+            placeholder="Search your next favorite..."
+            aria-label="Search featured products">
+        </label>
+        <button class="button button-primary search-submit" type="submit">Search</button>
+      </form>
+
+      <div class="filter-row" aria-label="Filter products by category">
+        <button class="filter-chip active" type="button" data-filter="All" aria-pressed="true">All finds</button>
+        <button class="filter-chip" type="button" data-filter="Electronics" aria-pressed="false">Technology</button>
+        <button class="filter-chip" type="button" data-filter="Fashion" aria-pressed="false">Fashion</button>
+        <button class="filter-chip" type="button" data-filter="Home" aria-pressed="false">Home &amp; living</button>
+      </div>
+
+      <div class="product-grid" id="product-grid">
+        <!-- Products are rendered dynamically by home.js -->
+      </div>
+
+      <p class="empty-results" id="empty-results" hidden>
+        No matching products found. Try a different search.
+      </p>
+
+      <div class="mobile-view-all">
+        <a class="button button-outline" href="products.html">
+          Explore all products <span aria-hidden="true">→</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- NEWSLETTER -->
+    <section class="newsletter-section" id="why-shopease">
+      <div class="newsletter-decoration" aria-hidden="true">✳</div>
+
+      <div class="newsletter-content">
+        <span class="section-kicker">A LITTLE GOOD NEWS</span>
+        <h2>Something good<br>is just around <span>the corner.</span></h2>
+        <p>
+          Get inspired by fresh finds, new arrivals, and little things worth sharing.
+        </p>
+
+        <form id="newsletter-form" class="newsletter-form">
+          <label class="visually-hidden" for="newsletter-email">Your email address</label>
+          <input type="email" id="newsletter-email"
+            placeholder="Your email address" required>
+          <button type="submit" aria-label="Subscribe to newsletter">
+            Count me in <span>→</span>
+          </button>
+        </form>
+
+        <p class="newsletter-message" id="newsletter-message" aria-live="polite">
+          A demo signup for now — no emails will be sent.
+        </p>
+      </div>
+
+      <div class="newsletter-visual">
+        <img src="https://images.unsplash.com/photo-1490312278390-ab64016e0aa9?w=850&h=850&fit=crop"
+          alt="Beautifully arranged everyday essentials" loading="lazy">
+        <div class="newsletter-sticker">
+          FIND YOUR<br>NEXT FAVORITE <span>✦</span>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="footer-main">
+      <div class="footer-brand">
+        <a class="brand" href="index.html">
+          <span class="brand-mark"><span></span><span></span><span></span></span>
+          <span>ShopEase<span class="brand-period">.</span></span>
+        </a>
+        <p>
+          Everyday essentials. Unexpected favorites. A better way to discover what you love.
+        </p>
+      </div>
+
+      <div class="footer-column">
+        <h3>Explore</h3>
+        <a href="index.html">Home</a>
+        <a href="products.html">All products</a>
+        <a href="#categories">Categories</a>
+      </div>
+
+      <div class="footer-column">
+        <h3>Your account</h3>
+        <a href="login.html">Sign in</a>
+        <a href="register.html">Create account</a>
+        <a href="cart.html">Shopping cart</a>
+      </div>
+
+      <div class="footer-column">
+        <h3>Need a hand?</h3>
+        <a href="mailto:hello@shopease.example">Contact us</a>
+        <a href="#why-shopease">About ShopEase</a>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <span>© 2026 ShopEase. Made for everyday living.</span>
+      <span>Thoughtfully picked. Simply shopped.</span>
+    </div>
+  </footer>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+</body>
+</html>

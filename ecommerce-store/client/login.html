@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Sign in to your ShopEase account.">
+  <title>Sign In | ShopEase</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="auth-page">
+  <header class="auth-header">
+    <a href="index.html" class="auth-logo">Shop<span>Ease</span></a>
+    <a href="register.html" class="auth-header-link">New to ShopEase? <strong>Create account</strong></a>
+  </header>
+
+  <main class="auth-main auth-main-login">
+    <section class="auth-card">
+      <div class="auth-heading">
+        <span class="auth-eyebrow">WELCOME BACK</span>
+        <h1>Sign in to ShopEase</h1>
+        <p>Enter your details to access your account.</p>
+      </div>
+
+      <div id="authMessage" class="auth-message" role="alert" aria-live="polite"></div>
+
+      <form id="loginForm" class="auth-form">
+        <div class="auth-field">
+          <label for="email">Email address</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            placeholder="you@example.com"
+            autocomplete="email"
+            required
+          >
+        </div>
+
+        <div class="auth-field">
+          <div class="auth-label-row">
+            <label for="password">Password</label>
+          </div>
+          <div class="auth-password-wrap">
+            <input
+              type="password"
+              id="password"
+              name="password"
+              placeholder="Enter your password"
+              autocomplete="current-password"
+              required
+            >
+            <button type="button" class="auth-show-password" data-toggle-password="password">
+              Show
+            </button>
+          </div>
+        </div>
+
+        <button type="submit" id="loginButton" class="auth-submit">
+          Sign in
+        </button>
+      </form>
+
+      <p class="auth-switch">
+        Don't have an account? <a href="register.html">Create one</a>
+      </p>
+      <p class="auth-back-link"><a href="index.html">← Continue browsing</a></p>
+    </section>
+
+    <aside class="auth-aside auth-aside-login">
+      <div class="auth-aside-content">
+        <span class="auth-aside-icon">✦</span>
+        <h2>Good to see you again.</h2>
+        <p>Your next favorite find is just around the corner. Sign in and continue exploring ShopEase.</p>
+        <div class="auth-benefit"><span>✓</span> Browse your favorite products</div>
+        <div class="auth-benefit"><span>✓</span> Review your shopping cart</div>
+        <div class="auth-benefit"><span>✓</span> Get ready for checkout</div>
+      </div>
+    </aside>
+  </main>
+
+  <footer class="auth-footer">
+    <p>&copy; <span id="authYear"></span> ShopEase. All rights reserved.</p>
+    <a href="index.html">Back to shopping</a>
+  </footer>
+
+  <script src="js/api.js"></script>
+  <script src="js/auth.js"></script>
+</body>
+</html>

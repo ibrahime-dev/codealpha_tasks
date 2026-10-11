@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard | ShopEase</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .admin-layout { display: grid; grid-template-columns: 220px 1fr; min-height: 100vh; }
+
+    /* Sidebar */
+    .admin-sidebar {
+      position: sticky; top: 0; height: 100vh;
+      background: #172238; color: #fff;
+      display: flex; flex-direction: column;
+      padding: 0; overflow-y: auto;
+    }
+    .admin-brand {
+      display: flex; align-items: center; gap: 10px;
+      padding: 22px 20px 18px;
+      font: 800 18px "Manrope",sans-serif;
+      border-bottom: 1px solid rgba(255,255,255,.1);
+    }
+    .admin-brand span { color: #5b9bff; }
+    .admin-nav { display: flex; flex-direction: column; padding: 16px 10px; flex: 1; gap: 4px; }
+    .admin-nav a {
+      display: flex; align-items: center; gap: 10px;
+      padding: 10px 12px; border-radius: 8px;
+      color: rgba(255,255,255,.65); font-size: 13px; font-weight: 600;
+      text-decoration: none; transition: background .2s, color .2s;
+    }
+    .admin-nav a:hover, .admin-nav a.active { background: rgba(255,255,255,.1); color: #fff; }
+    .admin-nav .nav-icon { font-size: 16px; width: 20px; text-align: center; }
+    .admin-sidebar-footer {
+      padding: 16px 10px;
+      border-top: 1px solid rgba(255,255,255,.1);
+    }
+    .admin-logout {
+      display: flex; align-items: center; gap: 10px;
+      width: 100%; padding: 10px 12px; border-radius: 8px;
+      border: none; background: transparent;
+      color: rgba(255,255,255,.55); font-size: 13px; font-weight: 600;
+      cursor: pointer; transition: background .2s, color .2s;
+    }
+    .admin-logout:hover { background: rgba(255,0,0,.15); color: #ff8080; }
+
+    /* Main content */
+    .admin-main { background: #f4f6fb; overflow-y: auto; }
+    .admin-topbar {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 20px 32px;
+      background: #fff; border-bottom: 1px solid #e8ebf1;
+      position: sticky; top: 0; z-index: 10;
+    }
+    .admin-topbar h1 { font: 700 20px "Manrope",sans-serif; }
+    .admin-user { display: flex; align-items: center; gap: 10px; font-size: 13px; color: #5a6478; }
+    .admin-avatar {
+      width: 34px; height: 34px; border-radius: 50%;
+      background: #2458d3; color: #fff;
+      display: grid; place-items: center;
+      font-weight: 800; font-size: 13px;
+    }
+
+    .admin-content { padding: 28px 32px; }
+
+    /* Stats grid */
+    .stats-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 18px; margin-bottom: 28px; }
+    .stat-card {
+      background: #fff; border: 1px solid #e8ebf1;
+      border-radius: 14px; padding: 20px 22px;
+      box-shadow: 0 2px 12px rgba(23,34,56,.05);
+    }
+    .stat-label { font-size: 12px; font-weight: 600; color: #8a93a8; letter-spacing: .04em; }
+    .stat-value { font: 800 28px "Manrope",sans-serif; color: #172238; margin: 6px 0 2px; }
+    .stat-sub { font-size: 12px; color: #a0a9b8; }
+    .stat-icon { float: right; font-size: 26px; margin-top: -4px; }
+
+    /* Section cards */
+    .admin-card {
+      background: #fff; border: 1px solid #e8ebf1;
+      border-radius: 14px; padding: 22px 24px;
+      box-shadow: 0 2px 12px rgba(23,34,56,.05);
+      margin-bottom: 24px;
+    }
+    .admin-card-header {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: 18px;
+    }
+    .admin-card-header h2 { font: 700 16px "Manrope",sans-serif; }
+    .admin-card-header a { font-size: 12px; color: #2458d3; font-weight: 600; text-decoration: none; }
+
+    /* Tables */
+    .admin-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+    .admin-table th {
+      text-align: left; padding: 10px 12px;
+      font-size: 11px; font-weight: 700; letter-spacing: .05em;
+      color: #8a93a8; border-bottom: 1px solid #e8ebf1;
+    }
+    .admin-table td { padding: 12px 12px; border-bottom: 1px solid #f0f2f6; color: #2d3748; }
+    .admin-table tr:last-child td { border-bottom: none; }
+    .admin-table tr:hover td { background: #fafbfe; }
+
+    /* Status badges */
+    .badge { display:inline-block; padding:3px 10px; border-radius:30px; font-size:11px; font-weight:700; }
+    .badge-pending    { background:#fef9c3; color:#a16207; }
+    .badge-confirmed  { background:#dbeafe; color:#1d4ed8; }
+    .badge-delivered  { background:#dcfce7; color:#166534; }
+    .badge-cancelled  { background:#fee2e2; color:#b91c1c; }
+    .badge-shipped    { background:#ede9fe; color:#6d28d9; }
+    .badge-active     { background:#dcfce7; color:#166534; }
+    .badge-inactive   { background:#fee2e2; color:#b91c1c; }
+
+    /* Sections hidden by default */
+    .admin-section { display: none; }
+    .admin-section.active { display: block; }
+
+    .loading-state { text-align:center; padding:40px; color:#8a93a8; font-size:14px; }
+    .error-state   { text-align:center; padding:40px; color:#b91c1c; font-size:14px; }
+    .empty-state-sm { text-align:center; padding:30px; color:#8a93a8; font-size:13px; }
+
+    /* Product form */
+    .product-form { display:grid; gap:16px; max-width:600px; }
+    .form-row-2 { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+    .form-field { display:flex; flex-direction:column; gap:6px; }
+    .form-field label { font-size:13px; font-weight:700; color:#263248; }
+    .form-field input,
+    .form-field select,
+    .form-field textarea {
+      padding:10px 12px; border:1px solid #d7dfeb; border-radius:8px;
+      font:inherit; font-size:14px; outline:none;
+      transition:border-color .2s, box-shadow .2s;
+    }
+    .form-field input:focus,
+    .form-field select:focus,
+    .form-field textarea:focus {
+      border-color:#2458d3;
+      box-shadow:0 0 0 3px rgba(36,88,211,.1);
+    }
+    .form-field textarea { min-height:80px; resize:vertical; }
+    .btn-primary {
+      padding:11px 22px; border:none; border-radius:8px;
+      background:#2458d3; color:#fff; font-size:14px; font-weight:700;
+      cursor:pointer; transition:background .2s;
+    }
+    .btn-primary:hover { background:#1946b3; }
+    .btn-primary:disabled { opacity:.6; cursor:wait; }
+    .btn-danger {
+      padding:6px 14px; border:none; border-radius:6px;
+      background:#fee2e2; color:#b91c1c; font-size:12px; font-weight:700;
+      cursor:pointer; transition:background .2s;
+    }
+    .btn-danger:hover { background:#fecaca; }
+    .form-message { padding:10px 14px; border-radius:8px; font-size:13px; margin-top:4px; }
+    .form-message.success { background:#f0fdf4; color:#166534; border:1px solid #bbf7d0; }
+    .form-message.error   { background:#fef2f2; color:#b91c1c; border:1px solid #fecaca; }
+
+    @media(max-width:768px){
+      .admin-layout { grid-template-columns:1fr; }
+      .admin-sidebar { position:static; height:auto; }
+      .stats-grid { grid-template-columns:1fr 1fr; }
+      .admin-content { padding:16px; }
+    }
+  </style>
+</head>
+<body>
+<div class="admin-layout">
+
+  <!-- SIDEBAR -->
+  <aside class="admin-sidebar">
+    <div class="admin-brand">
+      <span>⬛</span> Shop<span>Ease</span> Admin
+    </div>
+    <nav class="admin-nav">
+      <a href="#" class="active" data-section="dashboard">
+        <span class="nav-icon">📊</span> Dashboard
+      </a>
+      <a href="#" data-section="products">
+        <span class="nav-icon">📦</span> Products
+      </a>
+      <a href="#" data-section="orders">
+        <span class="nav-icon">🛒</span> Orders
+      </a>
+      <a href="#" data-section="users">
+        <span class="nav-icon">👥</span> Users
+      </a>
+      <a href="index.html" target="_blank">
+        <span class="nav-icon">🌐</span> View Store
+      </a>
+    </nav>
+    <div class="admin-sidebar-footer">
+      <button class="admin-logout" id="adminLogout">
+        <span class="nav-icon">↩</span> Sign out
+      </button>
+    </div>
+  </aside>
+
+  <!-- MAIN -->
+  <div class="admin-main">
+    <div class="admin-topbar">
+      <h1 id="pageTitle">Dashboard</h1>
+      <div class="admin-user">
+        <div class="admin-avatar" id="adminAvatar">A</div>
+        <span id="adminName">Admin</span>
+      </div>
+    </div>
+
+    <div class="admin-content">
+
+      <!-- DASHBOARD -->
+      <div class="admin-section active" id="section-dashboard">
+        <div class="stats-grid" id="statsGrid">
+          <div class="stat-card"><span class="stat-icon">📦</span><div class="stat-label">TOTAL PRODUCTS</div><div class="stat-value" id="statProducts">—</div></div>
+          <div class="stat-card"><span class="stat-icon">🛒</span><div class="stat-label">TOTAL ORDERS</div><div class="stat-value" id="statOrders">—</div></div>
+          <div class="stat-card"><span class="stat-icon">👥</span><div class="stat-label">CUSTOMERS</div><div class="stat-value" id="statUsers">—</div></div>
+          <div class="stat-card"><span class="stat-icon">💰</span><div class="stat-label">REVENUE</div><div class="stat-value" id="statRevenue">—</div></div>
+        </div>
+
+        <div class="admin-card">
+          <div class="admin-card-header">
+            <h2>Recent Orders</h2>
+            <a href="#" data-section="orders">View all →</a>
+          </div>
+          <div id="recentOrdersTable"><div class="loading-state">Loading…</div></div>
+        </div>
+      </div>
+
+      <!-- PRODUCTS -->
+      <div class="admin-section" id="section-products">
+        <div class="admin-card">
+          <div class="admin-card-header">
+            <h2>Add New Product</h2>
+          </div>
+          <form class="product-form" id="addProductForm">
+            <div class="form-row-2">
+              <div class="form-field">
+                <label>Product name *</label>
+                <input type="text" id="pName" placeholder="e.g. Wireless Headphones" required>
+              </div>
+              <div class="form-field">
+                <label>Category *</label>
+                <select id="pCategory" required>
+                  <option value="">Select category</option>
+                  <option value="Electronics">Electronics</option>
+                  <option value="Fashion">Fashion</option>
+                  <option value="Accessories">Accessories</option>
+                  <option value="Home">Home</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-row-2">
+              <div class="form-field">
+                <label>Price ($) *</label>
+                <input type="number" id="pPrice" placeholder="29.99" min="0" step="0.01" required>
+              </div>
+              <div class="form-field">
+                <label>Stock *</label>
+                <input type="number" id="pStock" placeholder="50" min="0" step="1" required>
+              </div>
+            </div>
+            <div class="form-field">
+              <label>Image path *</label>
+              <input type="text" id="pImage" placeholder="images/headphones.jpg" required>
+            </div>
+            <div class="form-field">
+              <label>Description *</label>
+              <textarea id="pDesc" placeholder="Describe the product…" required></textarea>
+            </div>
+            <div class="form-field">
+              <label>
+                <input type="checkbox" id="pFeatured"> Mark as featured
+              </label>
+            </div>
+            <div id="productFormMsg"></div>
+            <button type="submit" class="btn-primary" id="addProductBtn">Add Product</button>
+          </form>
+        </div>
+
+        <div class="admin-card">
+          <div class="admin-card-header"><h2>All Products</h2></div>
+          <div id="productsTable"><div class="loading-state">Loading…</div></div>
+        </div>
+      </div>
+
+      <!-- ORDERS -->
+      <div class="admin-section" id="section-orders">
+        <div class="admin-card">
+          <div class="admin-card-header"><h2>All Orders</h2></div>
+          <div id="ordersTable"><div class="loading-state">Loading…</div></div>
+        </div>
+      </div>
+
+      <!-- USERS -->
+      <div class="admin-section" id="section-users">
+        <div class="admin-card">
+          <div class="admin-card-header"><h2>All Users</h2></div>
+          <div id="usersTable"><div class="loading-state">Loading…</div></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script src="js/api.js"></script>
+<script src="js/admin.js"></script>
+</body>
+</html>

@@ -1,0 +1,148 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Explore product details and shop your favorites at ShopEase.">
+  <title>Product Details | ShopEase</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/api.js" defer></script>
+  <script src="js/product-details.js" defer></script>
+</head>
+<body>
+  <div class="announcement">Free shipping on orders over $75 <span>·</span> Discover your next favorite thing</div>
+
+  <header class="site-header">
+    <div class="container nav-container">
+      <a class="logo" href="index.html"><span class="logo-mark">S</span> ShopEase<span class="logo-dot">.</span></a>
+
+      <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation" aria-expanded="false">☰</button>
+
+      <nav class="main-nav" id="mainNav">
+        <a class="nav-link" href="index.html">Home</a>
+        <a class="nav-link active" href="products.html">Shop</a>
+        <a class="nav-link" href="products.html#categories">Categories</a>
+        <a class="nav-link" href="index.html#about">About</a>
+        <a class="nav-link" href="orders.html">My Orders</a>
+      </nav>
+
+      <div class="nav-actions">
+        <a class="icon-button" href="products.html" aria-label="Search products">⌕</a>
+        <a class="icon-button" href="login.html" aria-label="My account">♙</a>
+        <a class="cart-link" href="cart.html">Bag <span class="cart-count" id="cartCount">0</span></a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="container">
+      <div class="breadcrumbs product-breadcrumbs">
+        <a href="index.html">Home</a>
+        <span>/</span>
+        <a href="products.html">Shop</a>
+        <span>/</span>
+        <span id="breadcrumbName">Product details</span>
+      </div>
+
+      <section class="details-layout" id="productDetails">
+        <div class="details-image-wrap">
+          <span class="details-image-label">A GOOD FIND</span>
+          <img id="detailImage" src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=900&q=85" alt="Selected product">
+        </div>
+
+        <div class="details-info">
+          <span class="eyebrow" id="detailCategory">SHOP THE COLLECTION</span>
+          <h1 id="detailName">Minimal Classic Watch</h1>
+
+          <div class="details-rating">
+            <span class="rating-stars">★★★★★</span>
+            <span>Everyday favorite</span>
+          </div>
+
+          <p class="details-price" id="detailPrice">$49.99</p>
+
+          <p class="details-description" id="detailDescription">
+            A timeless everyday essential with a clean, versatile design.
+            Made to complement your style from morning to evening.
+          </p>
+
+          <div class="details-divider"></div>
+
+          <div class="detail-availability">
+            <span class="availability-dot"></span>
+            <span>Available to order</span>
+          </div>
+
+          <div class="quantity-row">
+            <label for="quantity">Quantity</label>
+            <div class="quantity-control">
+              <button type="button" id="decreaseQuantity" aria-label="Decrease quantity">−</button>
+              <input type="number" id="quantity" value="1" min="1" max="99" aria-label="Product quantity">
+              <button type="button" id="increaseQuantity" aria-label="Increase quantity">+</button>
+            </div>
+          </div>
+
+          <button type="button" class="button button-primary details-add-button" id="addToBag">
+            Add to bag <span>→</span>
+          </button>
+
+          <a class="button button-outline details-continue-button" href="products.html">
+            Continue shopping
+          </a>
+
+          <div class="details-promises">
+            <div><span>◇</span><p><strong>Thoughtful finds</strong><br>Everyday essentials</p></div>
+            <div><span>✓</span><p><strong>Easy checkout</strong><br>Simple shopping experience</p></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="details-extra">
+        <div class="details-extra-heading">
+          <span class="eyebrow">THE LITTLE DETAILS</span>
+          <h2>Good design. Everyday usefulness.</h2>
+          <p>We believe shopping should be straightforward. Explore your find, choose your quantity, and add it to your bag when you're ready.</p>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-main">
+      <div class="footer-brand">
+        <a class="logo footer-logo" href="index.html"><span class="logo-mark">S</span> ShopEase<span class="logo-dot">.</span></a>
+        <p>Good finds for everyday life. Discover your next favorite thing.</p>
+      </div>
+      <div class="footer-column">
+        <h3>Explore</h3>
+        <a href="products.html">All products</a>
+        <a href="index.html#categories">Categories</a>
+        <a href="index.html#about">About us</a>
+      </div>
+      <div class="footer-column">
+        <h3>Your account</h3>
+        <a href="login.html">Sign in</a>
+        <a href="register.html">Create account</a>
+        <a href="cart.html">Shopping bag</a>
+        <a href="orders.html">My orders</a>
+      </div>
+      <div class="footer-column">
+        <h3>Shopping</h3>
+        <a href="checkout.html">Checkout</a>
+        <a href="index.html">Homepage</a>
+      </div>
+    </div>
+    <div class="container footer-bottom">
+      <span>© <span id="currentYear"></span> ShopEase. Built with care.</span>
+      <span>Discover · Choose · Enjoy</span>
+    </div>
+  </footer>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+</body>
+</html>

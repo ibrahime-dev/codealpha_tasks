@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Complete your purchase at ShopEase.">
+  <title>Checkout | ShopEase</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="announcement">Free shipping on orders over $100 <span>·</span> ShopEase — simple checkout</div>
+
+  <header class="site-header">
+    <div class="container nav-container">
+      <a class="logo" href="index.html"><span class="logo-mark">S</span> ShopEase<span class="logo-dot">.</span></a>
+
+      <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation" aria-expanded="false">☰</button>
+
+      <nav class="main-nav" id="mainNav">
+        <a class="nav-link" href="index.html">Home</a>
+        <a class="nav-link" href="products.html">Shop</a>
+        <a class="nav-link" href="cart.html">Cart</a>
+      </nav>
+
+      <div class="nav-actions">
+        <a class="icon-button" href="login.html" aria-label="My account">♙</a>
+        <a class="cart-link" href="cart.html">Bag <span class="cart-count" id="cartCount">0</span></a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="page-banner">
+      <div class="container">
+        <span class="eyebrow">ALMOST THERE</span>
+        <h1>Checkout</h1>
+        <p>You're one step away from your next favorite thing.</p>
+        <div class="breadcrumbs">
+          <a href="index.html">Home</a><span>/</span>
+          <a href="cart.html">Cart</a><span>/</span>
+          Checkout
+        </div>
+      </div>
+    </section>
+
+    <!-- Login prompt shown when not authenticated -->
+    <div class="container" id="loginPrompt" hidden>
+      <div class="checkout-login-prompt">
+        <span class="prompt-icon">♙</span>
+        <h2>Sign in to complete your order</h2>
+        <p>You need an account to place an order. It only takes a moment.</p>
+        <div class="prompt-actions">
+          <a class="button button-primary" href="login.html?redirect=checkout.html">Sign in</a>
+          <a class="button button-outline" href="register.html?redirect=checkout.html">Create account</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Empty cart notice -->
+    <div class="container" id="emptyCartNotice" hidden>
+      <div class="checkout-login-prompt">
+        <span class="prompt-icon">♡</span>
+        <h2>Your bag is empty</h2>
+        <p>Add some products before checking out.</p>
+        <a class="button button-primary" href="products.html">Shop now →</a>
+      </div>
+    </div>
+
+    <!-- Main checkout layout -->
+    <section class="container checkout-section" id="checkoutSection">
+      <form class="checkout-form" id="checkoutForm" novalidate>
+
+        <!-- LEFT: shipping + payment -->
+        <div class="checkout-fields">
+
+          <div class="checkout-block">
+            <h2>Shipping information</h2>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="fullName">Full name <span class="required">*</span></label>
+                <input type="text" id="fullName" name="fullName"
+                  placeholder="Jane Smith" autocomplete="name"
+                  required minlength="2" maxlength="100">
+              </div>
+              <div class="form-group">
+                <label for="phone">Phone number</label>
+                <input type="tel" id="phone" name="phone"
+                  placeholder="+1 555 000 0000" autocomplete="tel" maxlength="30">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="address">Street address <span class="required">*</span></label>
+              <input type="text" id="address" name="address"
+                placeholder="123 Main Street, Apt 4B" autocomplete="street-address"
+                required minlength="5" maxlength="200">
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="city">City <span class="required">*</span></label>
+                <input type="text" id="city" name="city"
+                  placeholder="New York" autocomplete="address-level2"
+                  required minlength="2" maxlength="100">
+              </div>
+              <div class="form-group">
+                <label for="postalCode">Postal code</label>
+                <input type="text" id="postalCode" name="postalCode"
+                  placeholder="10001" autocomplete="postal-code" maxlength="20">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="country">Country <span class="required">*</span></label>
+              <input type="text" id="country" name="country"
+                placeholder="United States" autocomplete="country-name"
+                required minlength="2" maxlength="100">
+            </div>
+          </div>
+
+          <div class="checkout-block">
+            <h2>Payment method</h2>
+
+            <div class="payment-options" id="paymentOptions">
+              <label class="payment-option selected">
+                <input type="radio" name="paymentMethod" value="cash_on_delivery" checked>
+                <span class="payment-icon">💵</span>
+                <div>
+                  <strong>Cash on delivery</strong>
+                  <span>Pay when your order arrives</span>
+                </div>
+              </label>
+
+              <label class="payment-option">
+                <input type="radio" name="paymentMethod" value="demo">
+                <span class="payment-icon">💳</span>
+                <div>
+                  <strong>Demo card payment</strong>
+                  <span>Simulated — no real charge</span>
+                </div>
+              </label>
+            </div>
+
+            <!-- Demo card fields shown only when demo payment selected -->
+            <div class="demo-card-fields" id="demoCardFields" hidden>
+              <div class="form-group">
+                <label for="cardNumber">Card number</label>
+                <input type="text" id="cardNumber" placeholder="4242 4242 4242 4242"
+                  maxlength="19" autocomplete="cc-number" inputmode="numeric">
+                <small class="field-hint">This is a demo — no real payment is processed.</small>
+              </div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="cardExpiry">Expiry</label>
+                  <input type="text" id="cardExpiry" placeholder="MM / YY"
+                    maxlength="7" autocomplete="cc-exp">
+                </div>
+                <div class="form-group">
+                  <label for="cardCvc">CVC</label>
+                  <input type="text" id="cardCvc" placeholder="123"
+                    maxlength="4" autocomplete="cc-csc" inputmode="numeric">
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div id="checkoutError" class="checkout-error" hidden></div>
+
+          <button type="submit" class="button button-primary checkout-submit" id="placeOrderButton">
+            Place order <span>→</span>
+          </button>
+        </div>
+
+        <!-- RIGHT: order summary -->
+        <aside class="checkout-summary">
+          <h2>Your order</h2>
+
+          <div class="checkout-items" id="checkoutItems"></div>
+
+          <div class="checkout-totals">
+            <div class="summary-line">
+              <span>Subtotal</span>
+              <strong id="checkoutSubtotal">$0.00</strong>
+            </div>
+            <div class="summary-line">
+              <span>Shipping</span>
+              <strong id="checkoutShipping">—</strong>
+            </div>
+            <div class="summary-line summary-total">
+              <span>Total</span>
+              <strong id="checkoutTotal">$0.00</strong>
+            </div>
+          </div>
+
+          <p class="checkout-note">
+            <span>✓</span> Orders over $100 ship for free.
+          </p>
+        </aside>
+
+      </form>
+    </section>
+
+    <!-- Success screen shown after order is placed -->
+    <div class="container" id="orderSuccess" hidden>
+      <div class="order-success">
+        <div class="success-icon">✓</div>
+        <span class="eyebrow">ORDER CONFIRMED</span>
+        <h2>Your order is on its way!</h2>
+        <p id="successMessage">Thank you for your purchase.</p>
+        <div class="success-details" id="successDetails"></div>
+        <div class="success-actions">
+          <a class="button button-primary" href="products.html">Continue shopping →</a>
+          <a class="button button-outline" href="index.html">Back to home</a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-main">
+      <div class="footer-brand">
+        <a class="logo footer-logo" href="index.html"><span class="logo-mark">S</span> ShopEase<span class="logo-dot">.</span></a>
+        <p>Good finds for everyday life.</p>
+      </div>
+      <div class="footer-column">
+        <h3>Explore</h3>
+        <a href="products.html">All products</a>
+        <a href="cart.html">Shopping bag</a>
+      </div>
+      <div class="footer-column">
+        <h3>Your account</h3>
+        <a href="login.html">Sign in</a>
+        <a href="register.html">Create account</a>
+      </div>
+    </div>
+    <div class="container footer-bottom">
+      <span>© <span id="currentYear"></span> ShopEase. Built with care.</span>
+      <span>Discover · Choose · Enjoy</span>
+    </div>
+  </footer>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="js/api.js"></script>
+  <script src="js/checkout.js"></script>
+</body>
+</html>

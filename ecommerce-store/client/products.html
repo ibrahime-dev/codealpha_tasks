@@ -1,0 +1,185 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Explore the ShopEase product collection.">
+  <title>Shop Products | ShopEase</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/api.js" defer></script>
+  <script src="js/products.js" defer></script>
+</head>
+<body>
+  <div class="announcement">Free shipping on orders over $75 <span>·</span> Discover your next favorite thing</div>
+
+  <header class="site-header">
+    <div class="container nav-container">
+      <a class="logo" href="index.html"><span class="logo-mark">S</span> ShopEase<span class="logo-dot">.</span></a>
+
+      <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation" aria-expanded="false">☰</button>
+
+      <nav class="main-nav" id="mainNav">
+        <a class="nav-link" href="index.html">Home</a>
+        <a class="nav-link active" href="products.html">Shop</a>
+        <a class="nav-link" href="products.html#categories">Categories</a>
+        <a class="nav-link" href="index.html#about">About</a>
+        <a class="nav-link" href="orders.html">My Orders</a>
+      </nav>
+
+      <div class="nav-actions">
+        <a class="icon-button" href="products.html" aria-label="Search products">⌕</a>
+        <a class="icon-button" href="login.html" aria-label="My account">♙</a>
+        <a class="cart-link" href="cart.html">Bag <span class="cart-count" id="cartCount">0</span></a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="page-banner">
+      <div class="container">
+        <span class="eyebrow">THE SHOPEASE COLLECTION</span>
+        <h1>Find your next <span>favorite.</span></h1>
+        <p>Explore everyday essentials, thoughtful accessories, and modern finds.</p>
+        <div class="breadcrumbs"><a href="index.html">Home</a> <span>/</span> Shop</div>
+      </div>
+    </section>
+
+    <section class="container shop-section">
+      <div class="shop-toolbar">
+        <div>
+          <h2>All products</h2>
+          <p id="resultsCount" aria-live="polite">Discover our collection</p>
+        </div>
+
+        <div class="shop-controls">
+          <label class="shop-search">
+            <span>⌕</span>
+            <input type="search" id="productSearch" placeholder="Search products..." aria-label="Search products">
+          </label>
+
+          <label class="sort-control">
+            <span class="sr-only">Sort products</span>
+            <select id="sortProducts">
+              <option value="featured">Featured</option>
+              <option value="price-low">Price: low to high</option>
+              <option value="price-high">Price: high to low</option>
+              <option value="name">Name: A to Z</option>
+            </select>
+          </label>
+        </div>
+      </div>
+
+      <div class="shop-layout">
+        <aside class="shop-sidebar" id="categories">
+          <h3>Categories</h3>
+          <div class="category-filters" id="categoryFilters">
+            <button class="filter-button active" data-category="All">All products <span>→</span></button>
+            <button class="filter-button" data-category="Fashion">Fashion</button>
+            <button class="filter-button" data-category="Electronics">Electronics</button>
+            <button class="filter-button" data-category="Accessories">Accessories</button>
+            <button class="filter-button" data-category="Home">Home & Living</button>
+          </div>
+
+          <div class="sidebar-note">
+            <span>✦</span>
+            <h4>Good things, chosen carefully.</h4>
+            <p>Find something useful, beautiful, or a little bit of both.</p>
+          </div>
+        </aside>
+
+        <div class="shop-results">
+          <div class="product-grid" id="productsGrid" aria-live="polite">
+            <article class="product-card">
+              <a class="product-image" href="product-details.html?id=1">
+                <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=650&q=80" alt="Minimal classic watch">
+              </a>
+              <div class="product-info">
+                <span class="product-category">Accessories</span>
+                <h3><a href="product-details.html?id=1">Minimal Classic Watch</a></h3>
+                <div class="product-bottom"><strong>$49.99</strong><button class="add-cart" data-id="1" data-name="Minimal Classic Watch" data-price="49.99" aria-label="Add Minimal Classic Watch to cart">+</button></div>
+              </div>
+            </article>
+
+            <article class="product-card">
+              <a class="product-image" href="product-details.html?id=2">
+                <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=650&q=80" alt="Everyday sneakers">
+              </a>
+              <div class="product-info">
+                <span class="product-category">Fashion</span>
+                <h3><a href="product-details.html?id=2">Everyday Sneakers</a></h3>
+                <div class="product-bottom"><strong>$64.99</strong><button class="add-cart" data-id="2" data-name="Everyday Sneakers" data-price="64.99" aria-label="Add Everyday Sneakers to cart">+</button></div>
+              </div>
+            </article>
+
+            <article class="product-card">
+              <a class="product-image" href="product-details.html?id=3">
+                <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=650&q=80" alt="Wireless headphones">
+              </a>
+              <div class="product-info">
+                <span class="product-category">Electronics</span>
+                <h3><a href="product-details.html?id=3">Studio Wireless Headphones</a></h3>
+                <div class="product-bottom"><strong>$89.99</strong><button class="add-cart" data-id="3" data-name="Studio Wireless Headphones" data-price="89.99" aria-label="Add Studio Wireless Headphones to cart">+</button></div>
+              </div>
+            </article>
+
+            <article class="product-card">
+              <a class="product-image" href="product-details.html?id=4">
+                <img src="https://images.unsplash.com/photo-1490312278390-ab64016e0aa9?auto=format&fit=crop&w=650&q=80" alt="Modern ambient lamp">
+              </a>
+              <div class="product-info">
+                <span class="product-category">Home</span>
+                <h3><a href="product-details.html?id=4">Modern Ambient Lamp</a></h3>
+                <div class="product-bottom"><strong>$39.99</strong><button class="add-cart" data-id="4" data-name="Modern Ambient Lamp" data-price="39.99" aria-label="Add Modern Ambient Lamp to cart">+</button></div>
+              </div>
+            </article>
+          </div>
+
+          <div class="empty-state" id="emptyState" hidden>
+            <span>⌕</span>
+            <h3>No products found</h3>
+            <p>Try another search term or category.</p>
+            <button class="button button-primary" id="resetFilters" type="button">Clear filters</button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-main">
+      <div class="footer-brand">
+        <a class="logo footer-logo" href="index.html"><span class="logo-mark">S</span> ShopEase<span class="logo-dot">.</span></a>
+        <p>Good finds for everyday life. Discover your next favorite thing.</p>
+      </div>
+      <div class="footer-column">
+        <h3>Explore</h3>
+        <a href="products.html">All products</a>
+        <a href="index.html#categories">Categories</a>
+        <a href="index.html#about">About us</a>
+      </div>
+      <div class="footer-column">
+        <h3>Your account</h3>
+        <a href="login.html">Sign in</a>
+        <a href="register.html">Create account</a>
+        <a href="cart.html">Shopping bag</a>
+        <a href="orders.html">My orders</a>
+      </div>
+      <div class="footer-column">
+        <h3>Shopping</h3>
+        <a href="checkout.html">Checkout</a>
+        <a href="index.html">Homepage</a>
+      </div>
+    </div>
+    <div class="container footer-bottom">
+      <span>© <span id="currentYear"></span> ShopEase. Built with care.</span>
+      <span>Discover · Choose · Enjoy</span>
+    </div>
+  </footer>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+</body>
+</html>

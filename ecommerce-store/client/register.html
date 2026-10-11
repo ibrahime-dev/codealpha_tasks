@@ -1,0 +1,495 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Create your ShopEase account.">
+  <title>Create Account | ShopEase</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: #f3f6fc;
+      color: #172033;
+      min-height: 100vh;
+    }
+
+    a {
+      text-decoration: none;
+    }
+
+    .header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 15px;
+      padding: 20px 7%;
+      background: white;
+      border-bottom: 1px solid #e5eaf2;
+    }
+
+    .logo {
+      font-size: 28px;
+      font-weight: 800;
+      color: #172033;
+    }
+
+    .logo span {
+      color: #2563eb;
+    }
+
+    .header-link {
+      color: #64748b;
+      font-size: 14px;
+    }
+
+    .header-link strong {
+      color: #2563eb;
+    }
+
+    .container {
+      display: grid;
+      grid-template-columns: 1fr 0.9fr;
+      gap: 28px;
+      width: min(1050px, 92%);
+      margin: 45px auto;
+      align-items: stretch;
+    }
+
+    .register-card {
+      background: #ffffff;
+      padding: 38px;
+      border-radius: 18px;
+      border: 1px solid #e4eaf3;
+      box-shadow: 0 12px 35px rgba(20, 40, 80, 0.07);
+    }
+
+    .eyebrow {
+      color: #2563eb;
+      font-size: 11px;
+      font-weight: bold;
+      letter-spacing: 2px;
+    }
+
+    h1 {
+      margin-top: 13px;
+      margin-bottom: 10px;
+      font-size: 32px;
+      line-height: 1.2;
+    }
+
+    .intro {
+      color: #718096;
+      font-size: 14px;
+      line-height: 1.7;
+      margin-bottom: 26px;
+    }
+
+    .form-group {
+      margin-bottom: 18px;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 14px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .form-group > input,
+    .password-wrap input {
+      width: 100%;
+      height: 48px;
+      padding: 0 13px;
+      border: 1px solid #d7dfeb;
+      border-radius: 9px;
+      outline: none;
+      background: #fff;
+      color: #172033;
+      font-size: 14px;
+    }
+
+    .form-group input:focus,
+    .password-wrap:focus-within {
+      border-color: #2563eb;
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+    }
+
+    .form-group input::placeholder {
+      color: #9aa5b5;
+    }
+
+    .password-wrap {
+      display: flex;
+      align-items: center;
+      border: 1px solid #d7dfeb;
+      border-radius: 9px;
+      padding-right: 12px;
+    }
+
+    .password-wrap input {
+      flex: 1;
+      min-width: 0;
+      border: none;
+      box-shadow: none;
+    }
+
+    .password-wrap input:focus {
+      border: none;
+      box-shadow: none;
+    }
+
+    .show-password {
+      border: none;
+      background: transparent;
+      color: #2563eb;
+      font-weight: bold;
+      cursor: pointer;
+      padding: 8px 0 8px 8px;
+    }
+
+    .hint {
+      display: block;
+      color: #8290a5;
+      font-size: 12px;
+      margin-top: 7px;
+    }
+
+    .terms {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      margin: 8px 0 20px;
+      color: #64748b;
+      font-size: 13px;
+      line-height: 1.6;
+    }
+
+    .terms input {
+      width: 16px;
+      height: 16px;
+      margin-top: 2px;
+      flex-shrink: 0;
+      accent-color: #2563eb;
+    }
+
+    /* Create Account button */
+    .register-button {
+      display: block;
+      width: 100%;
+      min-height: 52px;
+      padding: 15px;
+      border: none;
+      border-radius: 10px;
+      background: #2563eb;
+      color: #ffffff;
+      font-size: 16px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.2s;
+    }
+
+    .register-button:hover {
+      background: #1d4ed8;
+      transform: translateY(-1px);
+    }
+
+    .register-button:disabled {
+      opacity: 0.65;
+      cursor: wait;
+      transform: none;
+    }
+
+    .message {
+      display: none;
+      margin-bottom: 18px;
+      padding: 12px;
+      border-radius: 8px;
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+    .message.visible {
+      display: block;
+    }
+
+    .message.error {
+      background: #fff0f0;
+      border: 1px solid #fecaca;
+      color: #b91c1c;
+    }
+
+    .message.success {
+      background: #effcf3;
+      border: 1px solid #bbf7d0;
+      color: #166534;
+    }
+
+    .signin {
+      margin-top: 23px;
+      text-align: center;
+      color: #718096;
+      font-size: 13px;
+    }
+
+    .signin a {
+      color: #2563eb;
+      font-weight: 700;
+    }
+
+    /* Welcome panel */
+    .welcome-panel {
+      display: flex;
+      align-items: center;
+      padding: 40px;
+      border-radius: 18px;
+      color: white;
+      background: linear-gradient(145deg, #3b82f6, #173fa9);
+    }
+
+    .welcome-icon {
+      display: grid;
+      place-items: center;
+      width: 55px;
+      height: 55px;
+      border: 1px solid rgba(255,255,255,0.3);
+      border-radius: 16px;
+      background: rgba(255,255,255,0.15);
+      font-size: 28px;
+    }
+
+    .welcome-panel h2 {
+      margin: 25px 0 14px;
+      font-size: 35px;
+      line-height: 1.2;
+    }
+
+    .welcome-panel p {
+      color: #e1eaff;
+      font-size: 14px;
+      line-height: 1.8;
+      margin-bottom: 25px;
+    }
+
+    .benefit {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin: 17px 0;
+      font-size: 13px;
+    }
+
+    .check {
+      display: grid;
+      place-items: center;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.2);
+      flex-shrink: 0;
+    }
+
+    footer {
+      display: flex;
+      justify-content: space-between;
+      gap: 15px;
+      width: min(1050px, 92%);
+      margin: 0 auto;
+      padding: 0 0 25px;
+      color: #8290a5;
+      font-size: 12px;
+    }
+
+    footer a {
+      color: #2563eb;
+    }
+
+    @media (max-width: 760px) {
+      .container {
+        grid-template-columns: 1fr;
+        width: min(520px, 92%);
+        margin: 25px auto;
+      }
+
+      .register-card {
+        padding: 28px 22px;
+      }
+
+      .welcome-panel {
+        padding: 30px;
+      }
+
+      .welcome-panel h2 {
+        font-size: 29px;
+      }
+
+      .header {
+        padding: 17px 4%;
+      }
+
+      .logo {
+        font-size: 24px;
+      }
+
+      .header-link {
+        max-width: 180px;
+        font-size: 12px;
+        line-height: 1.6;
+        text-align: right;
+      }
+    }
+
+    @media (max-width: 380px) {
+      h1 {
+        font-size: 27px;
+      }
+
+      .register-card {
+        padding: 24px 17px;
+      }
+
+      footer {
+        flex-wrap: wrap;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="header">
+    <a href="index.html" class="logo">Shop<span>Ease</span></a>
+    <a href="login.html" class="header-link">
+      Already have an account? <strong>Sign in</strong>
+    </a>
+  </header>
+
+  <main class="container">
+    <section class="register-card">
+      <span class="eyebrow">WELCOME TO SHOPEASE</span>
+      <h1>Create your account</h1>
+      <p class="intro">Join us to discover products you'll love.</p>
+
+      <div id="authMessage" class="message" role="alert" aria-live="polite"></div>
+
+      <form id="registerForm">
+        <div class="form-group">
+          <label for="name">Full name</label>
+          <input
+            type="text"
+            id="name"
+            name="name"
+            placeholder="Enter your full name"
+            autocomplete="name"
+            minlength="2"
+            maxlength="80"
+            required
+          >
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email address</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            placeholder="you@example.com"
+            autocomplete="email"
+            required
+          >
+        </div>
+
+        <div class="form-group">
+          <label for="password">Password</label>
+          <div class="password-wrap">
+            <input
+              type="password"
+              id="password"
+              name="password"
+              placeholder="At least 8 characters"
+              autocomplete="new-password"
+              minlength="8"
+              required
+            >
+            <button type="button" class="show-password" data-target="password">
+              Show
+            </button>
+          </div>
+          <small class="hint">Use at least 8 characters.</small>
+        </div>
+
+        <div class="form-group">
+          <label for="confirmPassword">Confirm password</label>
+          <div class="password-wrap">
+            <input
+              type="password"
+              id="confirmPassword"
+              name="confirmPassword"
+              placeholder="Enter your password again"
+              autocomplete="new-password"
+              minlength="8"
+              required
+            >
+            <button type="button" class="show-password" data-target="confirmPassword">
+              Show
+            </button>
+          </div>
+        </div>
+
+        <label class="terms">
+          <input type="checkbox" id="terms" required>
+          <span>I agree to the terms of use and privacy policy.</span>
+        </label>
+
+        <button type="submit" id="registerButton" class="register-button">
+          Create Account
+        </button>
+      </form>
+
+      <p class="signin">
+        Already registered? <a href="login.html">Sign in instead</a>
+      </p>
+    </section>
+
+    <aside class="welcome-panel">
+      <div>
+        <div class="welcome-icon">✦</div>
+        <h2>Shopping made simple.</h2>
+        <p>
+          Create an account for a smoother, more personal shopping experience.
+        </p>
+
+        <div class="benefit">
+          <span class="check">✓</span>
+          <span>Discover products you'll love</span>
+        </div>
+
+        <div class="benefit">
+          <span class="check">✓</span>
+          <span>Keep your shopping cart organized</span>
+        </div>
+
+        <div class="benefit">
+          <span class="check">✓</span>
+          <span>Enjoy a simple checkout experience</span>
+        </div>
+      </div>
+    </aside>
+  </main>
+
+  <footer>
+    <p>&copy; <span id="authYear"></span> ShopEase. All rights reserved.</p>
+    <a href="index.html">Back to shopping</a>
+  </footer>
+
+  
+  <script src="js/api.js"></script>
+  <script src="js/auth.js"></script>
+</body>
+</html>
