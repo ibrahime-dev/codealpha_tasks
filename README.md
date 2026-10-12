@@ -19,7 +19,7 @@ A full-stack online shopping application that allows users to browse products an
 - User registration and login
 - Place and manage orders
 
-**Technologies:** Node.js, Express.js, MongoDB, HTML, CSS, JavaScript
+**Technologies:** HTML, CSS, JavaScript, Node.js, Express.js, MongoDB
 
 ---
 
@@ -34,13 +34,13 @@ A project management application for organizing projects and tracking tasks.
 - Add comments to tasks
 - Organize tasks using a Kanban board
 
-**Technologies:** React, Node.js, Express.js, MongoDB
+**Technologies:** HTML, CSS, JavaScript, Node.js, Express.js, MongoDB
 
 ---
 
 ## Tech Stack
 
-- **Frontend:** HTML, CSS, JavaScript / React
+- **Frontend:** HTML, CSS, JavaScript
 - **Backend:** Node.js, Express.js
 - **Database:** MongoDB
 - **Version Control:** Git and GitHub
