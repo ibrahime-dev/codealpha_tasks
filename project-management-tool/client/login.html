@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#166b50">
+    <meta name="description" content="Sign in to your TaskFlow workspace.">
+    <title>Sign in — TaskFlow</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="/runtime-config.js" defer></script>
+    <script src="js/config.js" defer></script>
+    <script src="js/api.js" defer></script>
+    <script src="js/auth.js" defer></script>
+  </head>
+  <body>
+    <main class="auth-page">
+      <section class="auth-visual" aria-label="About TaskFlow">
+        <a class="brand" href="index.html" aria-label="TaskFlow home">
+          <span class="brand-mark" aria-hidden="true">t</span>
+          <span>TaskFlow</span>
+        </a>
+        <div class="auth-pitch">
+          <p class="auth-eyebrow">Make space for great work</p>
+          <h1>Bring every project into focus.</h1>
+          <p>Keep your team aligned, your priorities visible, and your next step clear.</p>
+        </div>
+        <p class="auth-visual-footer">A calmer workspace for work that matters.</p>
+      </section>
+
+      <section class="auth-panel">
+        <div class="auth-form-wrap">
+          <p class="eyebrow">Welcome back</p>
+          <h2>Sign in to TaskFlow</h2>
+          <p class="auth-subtitle">Pick up where you left off and keep your projects moving.</p>
+          <p class="auth-notice" id="auth-notice" hidden></p>
+          <form class="auth-form" id="login-form">
+            <div class="field">
+              <label for="email">Email address</label>
+              <input id="email" name="email" type="email" maxlength="254" required autocomplete="email" placeholder="you@example.com">
+            </div>
+            <div class="field">
+              <label for="password">Password</label>
+              <input id="password" name="password" type="password" maxlength="128" required autocomplete="current-password" placeholder="Enter your password">
+            </div>
+            <p class="form-error" id="auth-error" role="alert"></p>
+            <button class="button auth-submit" type="submit">Sign in</button>
+          </form>
+          <p class="auth-footnote">New to TaskFlow? <a href="register.html">Create an account</a></p>
+        </div>
+      </section>
+    </main>
+    <div class="toast-region" id="toast-region" aria-live="polite" aria-atomic="true"></div>
+  </body>
+</html>

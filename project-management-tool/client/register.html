@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#166b50">
+    <meta name="description" content="Create your TaskFlow account and start organizing projects.">
+    <title>Create account — TaskFlow</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="/runtime-config.js" defer></script>
+    <script src="js/config.js" defer></script>
+    <script src="js/api.js" defer></script>
+    <script src="js/auth.js" defer></script>
+  </head>
+  <body>
+    <main class="auth-page">
+      <section class="auth-visual" aria-label="About TaskFlow">
+        <a class="brand" href="index.html" aria-label="TaskFlow home">
+          <span class="brand-mark" aria-hidden="true">t</span>
+          <span>TaskFlow</span>
+        </a>
+        <div class="auth-pitch">
+          <p class="auth-eyebrow">Start with a clear plan</p>
+          <h1>Good teamwork begins with clarity.</h1>
+          <p>Bring your people and priorities together, then turn plans into steady progress.</p>
+        </div>
+        <p class="auth-visual-footer">Your projects deserve a space of their own.</p>
+      </section>
+
+      <section class="auth-panel">
+        <div class="auth-form-wrap">
+          <p class="eyebrow">Your workspace starts here</p>
+          <h2>Create your account</h2>
+          <p class="auth-subtitle">Set up your account to create projects and work with your team.</p>
+          <p class="auth-notice" id="auth-notice" hidden></p>
+          <form class="auth-form" id="register-form">
+            <div class="field">
+              <label for="name">Your name</label>
+              <input id="name" name="name" type="text" minlength="2" maxlength="80" required autocomplete="name" placeholder="Alex Morgan">
+            </div>
+            <div class="field">
+              <label for="email">Email address</label>
+              <input id="email" name="email" type="email" maxlength="254" required autocomplete="email" placeholder="you@example.com">
+            </div>
+            <div class="field">
+              <label for="password">Password</label>
+              <input id="password" name="password" type="password" minlength="8" maxlength="128" required autocomplete="new-password" placeholder="At least 8 characters">
+            </div>
+            <p class="form-error" id="auth-error" role="alert"></p>
+            <button class="button auth-submit" type="submit">Create account</button>
+          </form>
+          <p class="auth-footnote">Already have an account? <a href="login.html">Sign in</a></p>
+        </div>
+      </section>
+    </main>
+    <div class="toast-region" id="toast-region" aria-live="polite" aria-atomic="true"></div>
+  </body>
+</html>

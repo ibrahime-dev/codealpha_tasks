@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#166b50">
+    <meta name="description" content="Plan projects, organize tasks, and keep your team moving with TaskFlow.">
+    <title>TaskFlow — Project dashboard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="/runtime-config.js" defer></script>
+    <script src="js/config.js" defer></script>
+    <script src="js/api.js" defer></script>
+    <script src="js/dashboard.js" defer></script>
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar" aria-label="Main navigation">
+        <a class="brand" href="index.html" aria-label="TaskFlow home">
+          <span class="brand-mark" aria-hidden="true">t</span>
+          <span>TaskFlow</span>
+        </a>
+
+        <p class="sidebar-label">Workspace</p>
+        <a class="nav-link is-active" href="index.html">
+          <span class="nav-icon" aria-hidden="true">▦</span>
+          <span>Dashboard</span>
+        </a>
+
+        <div class="sidebar-bottom">
+          <div class="profile-card">
+            <span class="avatar" id="profile-avatar" aria-hidden="true">?</span>
+            <div class="profile-copy">
+              <strong id="profile-name">Loading…</strong>
+              <span id="profile-email"></span>
+            </div>
+            <button class="logout-button" id="logout-button" type="button" aria-label="Log out" title="Log out">↗</button>
+          </div>
+        </div>
+      </aside>
+
+      <main class="main-content">
+        <header class="topbar">
+          <div>
+            <p class="eyebrow" id="today-label">Your workspace</p>
+            <h1>Dashboard</h1>
+          </div>
+          <button class="button" id="new-project-button" type="button">
+            <span aria-hidden="true">＋</span> New project
+          </button>
+        </header>
+
+        <p class="page-message" id="page-error" role="alert" hidden></p>
+
+        <section class="welcome-panel" aria-label="Welcome">
+          <div class="welcome-copy">
+            <p class="eyebrow">A clearer way to work</p>
+            <h2 id="welcome-title">Good work starts with a plan.</h2>
+            <p>Your projects, priorities, and progress — all in one place.</p>
+          </div>
+          <button class="button" id="welcome-create-button" type="button">
+            Create a project <span aria-hidden="true">↗</span>
+          </button>
+        </section>
+
+        <section class="stats-grid" aria-label="Workspace summary">
+          <article class="stat-card">
+            <div class="stat-card-top">
+              <span>Active projects</span>
+              <span class="stat-icon" aria-hidden="true">▦</span>
+            </div>
+            <p class="stat-value" id="active-project-count">—</p>
+            <p class="stat-note">Projects you can access</p>
+          </article>
+          <article class="stat-card">
+            <div class="stat-card-top">
+              <span>Open tasks</span>
+              <span class="stat-icon" aria-hidden="true">◷</span>
+            </div>
+            <p class="stat-value" id="open-task-count">—</p>
+            <p class="stat-note">To do or in progress</p>
+          </article>
+          <article class="stat-card">
+            <div class="stat-card-top">
+              <span>Tasks completed</span>
+              <span class="stat-icon" aria-hidden="true">✓</span>
+            </div>
+            <p class="stat-value" id="done-task-count">—</p>
+            <p class="stat-note">Across your projects</p>
+          </article>
+        </section>
+
+        <section aria-labelledby="projects-heading">
+          <div class="section-heading">
+            <div>
+              <h2 id="projects-heading">Your projects</h2>
+              <p>Keep the big picture and the next steps close.</p>
+            </div>
+          </div>
+          <div class="project-grid" id="project-grid" aria-live="polite">
+            <div class="empty-state">
+              <div class="empty-icon" aria-hidden="true">◌</div>
+              <h3>Loading your projects</h3>
+              <p>One moment while we get your workspace ready.</p>
+            </div>
+          </div>
+        </section>
+
+
+        
+      </main>
+    </div>
+
+    <dialog id="project-dialog" aria-labelledby="project-dialog-title">
+      <form class="dialog-content form-grid" id="project-form">
+        <div class="dialog-heading">
+          <div>
+            <h2 id="project-dialog-title">Create a project</h2>
+            <p>Give your team a shared place to plan the work.</p>
+          </div>
+          <button class="dialog-close" type="button" data-close-dialog aria-label="Close">×</button>
+        </div>
+        <input id="project-id" name="projectId" type="hidden">
+        <div class="field">
+          <label for="project-name">Project name</label>
+          <input id="project-name" name="name" type="text" minlength="2" maxlength="120" required autocomplete="off" placeholder="e.g. Website refresh">
+        </div>
+        <div class="field">
+          <label for="project-description">Description <span class="muted">(optional)</span></label>
+          <textarea id="project-description" name="description" maxlength="2000" placeholder="What are you working toward?"></textarea>
+        </div>
+        <p class="form-error" id="project-form-error" role="alert"></p>
+        <div class="dialog-actions">
+          <button class="button button-secondary" type="button" data-close-dialog>Cancel</button>
+          <button class="button" type="submit" id="project-submit-button">Create project</button>
+        </div>
+      </form>
+    </dialog>
+
+    <div class="toast-region" id="toast-region" aria-live="polite" aria-atomic="true"></div>
+  </body>
+</html>

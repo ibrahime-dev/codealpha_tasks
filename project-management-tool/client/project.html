@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#166b50">
+    <meta name="description" content="View project details and organize tasks on the TaskFlow Kanban board.">
+    <title>Project — TaskFlow</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="/runtime-config.js" defer></script>
+    <script src="js/config.js" defer></script>
+    <script src="js/api.js" defer></script>
+    <script src="js/project.js" defer></script>
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar" aria-label="Main navigation">
+        <a class="brand" href="index.html" aria-label="TaskFlow home">
+          <span class="brand-mark" aria-hidden="true">t</span>
+          <span>TaskFlow</span>
+        </a>
+        <p class="sidebar-label">Workspace</p>
+        <a class="nav-link" href="index.html">
+          <span class="nav-icon" aria-hidden="true">▦</span>
+          <span>Dashboard</span>
+        </a>
+        <div class="sidebar-bottom">
+          <div class="profile-card">
+            <span class="avatar" id="profile-avatar" aria-hidden="true">?</span>
+            <div class="profile-copy">
+              <strong id="profile-name">Loading…</strong>
+              <span id="profile-email"></span>
+            </div>
+            <button class="logout-button" id="logout-button" type="button" aria-label="Log out" title="Log out">↗</button>
+          </div>
+        </div>
+      </aside>
+
+      <main class="main-content">
+        <header class="topbar">
+          <div>
+            <nav class="breadcrumbs" aria-label="Breadcrumb">
+              <a href="index.html">Dashboard</a>
+              <span aria-hidden="true">/</span>
+              <span id="breadcrumb-project">Project</span>
+            </nav>
+            <h1 id="project-title">Loading project…</h1>
+            <p class="project-subtitle" id="project-description"></p>
+          </div>
+          <button class="button" id="new-task-button" type="button">
+            <span aria-hidden="true">＋</span> Add task
+          </button>
+        </header>
+
+        <p class="page-message" id="page-error" role="alert" hidden></p>
+
+        <section class="team-panel" id="team-panel" aria-labelledby="team-heading" hidden>
+          <div>
+            <h2 id="team-heading">Project team</h2>
+            <p class="team-panel-copy">Add registered users to assign them tasks.</p>
+          </div>
+          <div class="team-list" id="team-list" aria-live="polite"></div>
+          <form class="team-add-form" id="member-form">
+            <label class="sr-only" for="member-email">Teammate email address</label>
+            <input id="member-email" name="email" type="email" maxlength="254" required placeholder="teammate@example.com">
+            <button class="button" id="member-submit-button" type="submit">Add</button>
+          </form>
+          <p class="team-error" id="member-form-error" role="alert"></p>
+        </section>
+
+        <section aria-label="Project task board">
+          <div class="kanban-header">
+            <div>
+              <h2>Task board</h2>
+              <p class="eyebrow" id="board-summary">Organize the work, one step at a time.</p>
+            </div>
+            <span class="owner-badge" id="owner-badge" hidden>Project owner</span>
+          </div>
+          <div class="kanban-board" id="kanban-board">
+            <section class="kanban-column" data-status="todo" aria-labelledby="todo-heading">
+              <div class="column-heading">
+                <h3 class="column-title" id="todo-heading"><span class="column-dot" aria-hidden="true"></span>To Do</h3>
+                <span class="column-count" id="count-todo">0</span>
+              </div>
+              <div class="task-list" id="list-todo" aria-live="polite"></div>
+            </section>
+            <section class="kanban-column" data-status="inProgress" aria-labelledby="progress-heading">
+              <div class="column-heading">
+                <h3 class="column-title" id="progress-heading"><span class="column-dot in-progress" aria-hidden="true"></span>In Progress</h3>
+                <span class="column-count" id="count-inProgress">0</span>
+              </div>
+              <div class="task-list" id="list-inProgress" aria-live="polite"></div>
+            </section>
+            <section class="kanban-column" data-status="done" aria-labelledby="done-heading">
+              <div class="column-heading">
+                <h3 class="column-title" id="done-heading"><span class="column-dot done" aria-hidden="true"></span>Done</h3>
+                <span class="column-count" id="count-done">0</span>
+              </div>
+              <div class="task-list" id="list-done" aria-live="polite"></div>
+            </section>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <dialog id="task-dialog" aria-labelledby="task-dialog-title">
+      <form class="dialog-content form-grid" id="task-form">
+        <div class="dialog-heading">
+          <div>
+            <h2 id="task-dialog-title">Add a task</h2>
+            <p>Keep the next step clear and actionable.</p>
+          </div>
+          <button class="dialog-close" type="button" data-close-dialog aria-label="Close">×</button>
+        </div>
+        <input id="task-id" name="taskId" type="hidden">
+        <div class="field">
+          <label for="task-title">Task title</label>
+          <input id="task-title" name="title" type="text" minlength="2" maxlength="160" required autocomplete="off" placeholder="What needs to get done?">
+        </div>
+        <div class="field">
+          <label for="task-description">Description <span class="muted">(optional)</span></label>
+          <textarea id="task-description" name="description" maxlength="5000" placeholder="Add a little more detail"></textarea>
+        </div>
+        <div class="form-row">
+          <div class="field">
+            <label for="task-assignee">Assign to</label>
+            <select id="task-assignee" name="assignedTo">
+              <option value="">Unassigned</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="task-due-date">Due date <span class="muted">(optional)</span></label>
+            <input id="task-due-date" name="dueDate" type="date">
+          </div>
+        </div>
+        <p class="field-hint">Assignees must already be members of this project.</p>
+        <p class="form-error" id="task-form-error" role="alert"></p>
+        <div class="dialog-actions">
+          <button class="button button-secondary" type="button" data-close-dialog>Cancel</button>
+          <button class="button" type="submit" id="task-submit-button">Add task</button>
+        </div>
+      </form>
+    </dialog>
+
+    <dialog id="comments-dialog" aria-labelledby="comments-dialog-title">
+      <div class="dialog-content">
+        <div class="dialog-heading">
+          <div>
+            <h2 id="comments-dialog-title">Task comments</h2>
+            <p id="comments-task-title">Discuss this task with your team.</p>
+          </div>
+          <button class="dialog-close" type="button" data-close-dialog aria-label="Close">×</button>
+        </div>
+        <div class="comments-list" id="comments-list" aria-live="polite"></div>
+        <form class="form-grid" id="comment-form">
+          <div class="field">
+            <label for="comment-text">Add a comment</label>
+            <textarea id="comment-text" name="text" maxlength="2000" required placeholder="Share an update or ask a question…"></textarea>
+          </div>
+          <p class="form-error" id="comment-form-error" role="alert"></p>
+          <div class="dialog-actions">
+            <button class="button" type="submit" id="comment-submit-button">Post comment</button>
+          </div>
+        </form>
+      </div>
+    </dialog>
+
+    <div class="toast-region" id="toast-region" aria-live="polite" aria-atomic="true"></div>
+  </body>
+</html>
